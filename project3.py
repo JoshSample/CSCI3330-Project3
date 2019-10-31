@@ -6,26 +6,37 @@ CSCI 3330
 import networkx as nx  # This is the graph ADT we are working with
 
 
+def dfs_paths(graph, start, goal):
+    stack = [(start, [start])]
+    while stack:
+        (vertex, path) = stack.pop()
+        for next in graph[vertex] - set(path):
+            if next == goal:
+                yield path + [next]
+            else:
+                stack.append((next, path + [next]))
+
+
 def main():
     # Instantiate G1 as a graph object
     G1 = nx.Graph()
     # Define the first graph from problem 1
-    graph1 = {"a": ["b", "f", "e"],
-              "b": ["a", "c", "f"],
-              "c": ["b", "d", "g"],
-              "d": ["c", "g"],
-              "e": ["a", "f", "i"],
-              "f": ["a", "b", "e", "i"],
-              "g": ["c", "d", "j"],
-              "i": ["e", "f", "j", "m"],
-              "j": ["g", "i"],
-              "m": ["i", "n"],
-              "n": ["m"],
-              "h": ["l", "k"],
-              "k": ["h", "l", "o"],
-              "o": ["k"],
-              "l": ["h", "p"],
-              "p": ["l"]}
+    graph1 = {'a': set(['b', 'f', 'e']),
+              'b': set(['a', 'c', 'f']),
+              'c': set(['b', 'd', 'g']),
+              'd': set(['c', 'g']),
+              'e': set(['a', 'f', 'i']),
+              'f': set(['a', 'b', 'e', 'i']),
+              'g': set(['c', 'd', 'j']),
+              'i': set(['e', 'f', 'j', 'm']),
+              'j': set(['g', 'i']),
+              'm': set(['i', 'n']),
+              'n': set(['m']),
+              'h': set(['l', 'k']),
+              'k': set(['h', 'l', 'o']),
+              'o': set(['k']),
+              'l': set(['h', 'p']),
+              'p': set(['l'])}
     for k, v in graph1.items():
         for vv in v:
             G1.add_edge(k, vv)
@@ -36,7 +47,8 @@ def main():
     print("BFS:", list(nx.bfs_edges(G1, "a")))
     print("BFS with other remaining edges:", list(nx.bfs_edges(G1, "h")))
     # Problem 2
-
+    v = dfs_paths(graph1, 'a', 'c')
+    print("DFS path: ", list(v))
     # Problem 3
     G2 = nx.Graph()
     G2.add_edges_from([(1, 3), (3, 5), (3, 2), (2, 1), (4, 1),
