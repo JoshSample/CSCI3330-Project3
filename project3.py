@@ -92,6 +92,32 @@ def problem_4():
     print("Dijkstra's algorithm with problem 4 graph:", list(nx.single_source_dijkstra(G3, 'A')))
 
 
+def problem_5():
+    # G4 is problem 5's object
+    G4 = nx.Graph()
+    # Add weighted edges
+    G4.add_edge('A', 'C', weight=9)
+    G4.add_edge('A', 'B', weight=22)
+    G4.add_edge('A', 'D', weight=12)
+    G4.add_edge('B', 'C', weight=35)
+    G4.add_edge('C', 'D', weight=4)
+    G4.add_edge('B', 'H', weight=34)
+    G4.add_edge('B', 'F', weight=36)
+    G4.add_edge('C', 'F', weight=42)
+    G4.add_edge('C', 'E', weight=65)
+    G4.add_edge('D', 'E', weight=33)
+    G4.add_edge('F', 'H', weight=24)
+    G4.add_edge('E', 'F', weight=18)
+    G4.add_edge('D', 'I', weight=30)
+    G4.add_edge('E', 'G', weight=23)
+    G4.add_edge('F', 'G', weight=39)
+    G4.add_edge('H', 'I', weight=19)
+    G4.add_edge('G', 'I', weight=21)
+    G4.add_edge('G', 'H', weight=25)
+    # Print minimum spanning tree with Kruskal's algorithm for the above graph
+    print("Minimum spanning tree:", list(nx.minimum_spanning_tree(G4)))
+
+
 def main():
     # Define the first graph from problem 1
     graph1 = {'a': set(['b', 'e', 'f']),
@@ -125,6 +151,9 @@ def main():
 
     # Do problem 4
     problem_4()
+
+    # Do problem 5
+    problem_5()
 
 
 if __name__ == "__main__":
