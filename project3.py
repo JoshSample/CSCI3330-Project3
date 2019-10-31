@@ -17,9 +17,22 @@ def dfs_paths(graph, start, goal):
                 stack.append((next, path + [next]))
 
 
-def main():
+def problem_1(graph):
     # Instantiate G1 as a graph object
     G1 = nx.Graph()
+    # Add graph edges to G1 object
+    for k, v in graph.items():
+        for vv in v:
+            G1.add_edge(k, vv)
+
+    # Problem 1
+    print("DFS:", list(nx.dfs_edges(G1, "a")))
+    print("DFS with other remaining edges:", list(nx.dfs_edges(G1, "h")))
+    print("BFS:", list(nx.bfs_edges(G1, "a")))
+    print("BFS with other remaining edges:", list(nx.bfs_edges(G1, "h")))
+
+
+def main():
     # Define the first graph from problem 1
     graph1 = {'a': set(['b', 'f', 'e']),
               'b': set(['a', 'c', 'f']),
@@ -37,15 +50,8 @@ def main():
               'o': set(['k']),
               'l': set(['h', 'p']),
               'p': set(['l'])}
-    for k, v in graph1.items():
-        for vv in v:
-            G1.add_edge(k, vv)
-
-    # Problem 1
-    print("DFS:", list(nx.dfs_edges(G1, "a")))
-    print("DFS with other remaining edges:", list(nx.dfs_edges(G1, "h")))
-    print("BFS:", list(nx.bfs_edges(G1, "a")))
-    print("BFS with other remaining edges:", list(nx.bfs_edges(G1, "h")))
+    # Do problem 1
+    problem_1(graph1)
     # Problem 2
     v = dfs_paths(graph1, 'a', 'c')
     print("DFS path: ", list(v))
