@@ -46,12 +46,23 @@ def problem_1(graph):
     for k, v in graph.items():
         for vv in v:
             G1.add_edge(k, vv)
-
     # Problem 1
     print("DFS:", list(nx.dfs_edges(G1, 'a')))
     print("DFS with other remaining edges:", list(nx.dfs_edges(G1, 'h')))
     print("BFS:", list(nx.bfs_edges(G1, 'a')))
     print("BFS with other remaining edges:", list(nx.bfs_edges(G1, 'h')))
+
+
+def problem_3():
+    # G2 is another networkx object
+    G2 = nx.DiGraph()
+    # Create the graph in problem 3
+    G2.add_edges_from([(1, 3), (3, 5), (3, 2), (2, 1), (4, 1),
+                       (4, 2), (4, 12), (11, 12), (5, 6), (5, 8),
+                       (6, 8), (6, 7), (6, 10), (10, 9), (8, 9),
+                       (8, 10), (7, 10), (10, 11)])
+    # Print out strongly connected components
+    print(list(nx.strongly_connected_components(G2)))
 
 
 def main():
@@ -72,19 +83,18 @@ def main():
               'o': set(['k']),
               'l': set(['h', 'p']),
               'p': set(['l'])}
+
     # Do problem 1
     problem_1(graph1)
+
     # Problem 2
     v = dfs_paths(graph1, 'h', 'p')
-    print("DFS path from a to c: ", list(v))
+    print("DFS path from h to p: ", list(v))
     w = bfs_path(graph1, 'h', 'p')
-    print("BFS path from a to c: ", list(w))
-    # Problem 3
-    G2 = nx.Graph()
-    G2.add_edges_from([(1, 3), (3, 5), (3, 2), (2, 1), (4, 1),
-                       (4, 2), (4, 12), (11, 12), (3, 5),
-                       (5, 6), (5, 8), (6, 8), (6, 7), (6, 10),
-                       (10, 9), (8, 9), (8, 10), (7, 10), (10, 11)])
+    print("BFS path from h to p: ", list(w))
+
+    # Do problem 3
+    problem_3()
 
 
 if __name__ == "__main__":
