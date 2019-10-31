@@ -62,7 +62,34 @@ def problem_3():
                        (6, 8), (6, 7), (6, 10), (10, 9), (8, 9),
                        (8, 10), (7, 10), (10, 11)])
     # Print out strongly connected components
-    print(list(nx.strongly_connected_components(G2)))
+    print("Strongly connected points of the DAG:",
+          list(nx.strongly_connected_components(G2)))
+
+
+def problem_4():
+    # G3 is problem 4's object
+    G3 = nx.Graph()
+    # Add weighted edges
+    G3.add_edge('A', 'C', weight=9)
+    G3.add_edge('A', 'B', weight=22)
+    G3.add_edge('A', 'D', weight=12)
+    G3.add_edge('B', 'C', weight=35)
+    G3.add_edge('C', 'D', weight=4)
+    G3.add_edge('B', 'H', weight=34)
+    G3.add_edge('B', 'F', weight=36)
+    G3.add_edge('C', 'F', weight=42)
+    G3.add_edge('C', 'E', weight=65)
+    G3.add_edge('D', 'E', weight=33)
+    G3.add_edge('F', 'H', weight=24)
+    G3.add_edge('E', 'F', weight=18)
+    G3.add_edge('D', 'I', weight=30)
+    G3.add_edge('E', 'G', weight=23)
+    G3.add_edge('F', 'G', weight=39)
+    G3.add_edge('H', 'I', weight=19)
+    G3.add_edge('G', 'I', weight=21)
+    G3.add_edge('G', 'H', weight=25)
+    # Apply this graph to Dijkstra's algorithm, starting with 'A'
+    print("Dijkstra's algorithm with problem 4 graph:", list(nx.single_source_dijkstra(G3, 'A')))
 
 
 def main():
@@ -95,6 +122,9 @@ def main():
 
     # Do problem 3
     problem_3()
+
+    # Do problem 4
+    problem_4()
 
 
 if __name__ == "__main__":
