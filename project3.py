@@ -60,7 +60,7 @@ def problem_3():
     G2.add_edges_from([(1, 3), (3, 5), (3, 2), (2, 1), (4, 1),
                        (4, 2), (4, 12), (11, 12), (5, 6), (5, 8),
                        (6, 8), (6, 7), (6, 10), (10, 9), (8, 9),
-                       (8, 10), (7, 10), (10, 11)])
+                       (8, 10), (7, 10), (10, 11), (9, 5)])
     # Print out strongly connected components
     print("Strongly connected points of the DAG:",
           list(nx.strongly_connected_components(G2)))
